@@ -11,17 +11,16 @@ type Scheduler interface {
 	Schedule(job job.Job, duration time.Duration)
 }
 
-
 type delayedScheduler struct {
 }
 
 func NewScheduler() *delayedScheduler {
- return &delayedScheduler{}
+	return &delayedScheduler{}
 }
 
 func (d *delayedScheduler) Schedule(job job.Job, duration time.Duration) {
- go func() {
-  time.Sleep(duration)
-  job.Execute()
- }()
+	go func() {
+		time.Sleep(duration)
+		job.Execute()
+	}()
 }
