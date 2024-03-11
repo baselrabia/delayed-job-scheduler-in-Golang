@@ -1,6 +1,7 @@
 package delayedjob
 
 import (
+	"runtime/debug"
 	"testing"
 	"time"
 
@@ -8,6 +9,7 @@ import (
 )
 
 func BenchmarkScheduler(b *testing.B) {
+	debug.SetGCPercent(1000)
 	delayedScheduler := NewScheduler()
 
 	sumJob1 := job.NewSumJob(2, 3)
